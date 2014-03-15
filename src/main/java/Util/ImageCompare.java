@@ -5,15 +5,13 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.GrayFilter;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGEncodeParam;
-import com.sun.image.codec.jpeg.JPEGImageDecoder;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
 
  public class ImageCompare {
 
@@ -151,41 +149,23 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 	// write a buffered image to a jpeg file.
 	protected static void saveJPG(Image img, String filename) {
 		BufferedImage bi = imageToBufferedImage(img);
-		FileOutputStream out = null;
 		try { 
-			out = new FileOutputStream(filename);
-		} catch (java.io.FileNotFoundException io) { 
-			System.out.println("File Not Found"); 
-		}
-		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-		JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(bi);
-		param.setQuality(0.8f,false);
-		encoder.setJPEGEncodeParam(param);
-		try { 
-			encoder.encode(bi); 
-			out.close(); 
-		} catch (java.io.IOException io) {
-			System.out.println("IOException"); 
+			ImageIO.write(bi, "jpg",new File(filename));
+		} catch (IOException io) { 
+			System.out.println("Error saving file"); 
 		}
 	}
 	
 	// read a jpeg file into a buffered image
 	protected static Image loadJPG(String filename) {
-		FileInputStream in = null;
+		Image image = null;
 		try { 
-			in = new FileInputStream(filename);
-		} catch (java.io.FileNotFoundException io) { 
+			File sourceimage = new File(filename);
+			image = ImageIO.read(sourceimage);
+		} catch (IOException io) { 
 			System.out.println("File Not Found"); 
 		}
-		JPEGImageDecoder decoder = JPEGCodec.createJPEGDecoder(in);
-		BufferedImage bi = null;
-		try { 
-			bi = decoder.decodeAsBufferedImage(); 
-			in.close(); 
-		} catch (java.io.IOException io) {
-			System.out.println("IOException");
-		}
-		return bi;
+		return imageToBufferedImage(image);
 	}
 	
 }
