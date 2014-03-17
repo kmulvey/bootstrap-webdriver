@@ -3,15 +3,21 @@
   <groupId>com.ss.bootstrap</groupId>
   <artifactId>bootstrap-webdriver</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <build>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.6</jdk.version>
+	</properties>
+  
+	<build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>${jdk.version}</source>
+          <target>${jdk.version}</target>
         </configuration>
       </plugin>
     </plugins>
