@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -27,7 +28,8 @@ public class HomePage {
 
 			// read image file
 			BufferedImage bufferedImage = ImageIO.read(in);
-
+			ImageIO.write(bufferedImage, "png",new File("/Users/kmulvey/Desktop/test.jpg"));
+			
 			// create a blank, RGB, same width and height, and a white background
 			BufferedImage newBufferedImage = new BufferedImage(bufferedImage.getWidth(), bufferedImage.getHeight(), BufferedImage.TYPE_INT_RGB);
 			newBufferedImage.createGraphics().drawImage(bufferedImage, 0, 0, Color.WHITE, null);
