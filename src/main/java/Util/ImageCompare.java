@@ -147,7 +147,7 @@ import javax.swing.GrayFilter;
 	}
 	
 	// write a buffered image to a jpeg file.
-	protected static void saveJPG(Image img, String filename) {
+	public static void saveJPG(Image img, String filename){
 		BufferedImage bi = imageToBufferedImage(img);
 		try { 
 			ImageIO.write(bi, "jpg",new File(filename));
