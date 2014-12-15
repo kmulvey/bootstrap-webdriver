@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -28,9 +29,17 @@ public class HomePage {
 
 	public boolean getShot() {
 		Actions actions = new Actions(driver);
-		List menuHoverLink = driver.findElements(By.cssSelector(".btn"));
+		List<WebElement> menuHoverLink = driver.findElements(By.cssSelector(".btn"));
+		for (int i = 0; i < menuHoverLink.size(); i++) {
+			actions.moveToElement(menuHoverLink.get(i));
+		}
+		actions.perform();
 //		menuHoverLink.click();
 //		actions.clickAndHold(menuHoverLink);
+		
+		
+//		WebElement subLink = driver.findElement(By.cssSelector(".btn.btn-outline-inverse.btn-lg"));
+//		actions.moveToElement(subLink);
 //		actions.perform();
 		File screenshotFile = (File) ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 

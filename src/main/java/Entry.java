@@ -10,7 +10,7 @@ public class Entry {
         WebDriver driver = new FirefoxDriver();
 
         // And now use this to visit Google
-        driver.get("http://getbootstrap.com/2.3.2/getting-started.html");
+        driver.get("http://getbootstrap.com/css");
         HomePage hp = new HomePage(driver);
         hp.getShot();
 
